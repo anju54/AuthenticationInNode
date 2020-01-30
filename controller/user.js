@@ -3,7 +3,6 @@ const bcryptjs = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 var config = require('../util/config');
 
-
 const { check, validationResult } = require('express-validator');
 
 // This is used for signup
@@ -63,9 +62,13 @@ exports.login = (req, res, next) => {
                 } else if (!isMatch) {
                     res.status(400).send('Password does not match');
                 } else {
-                    var token = jwt.sign({ id: results[0].user_id }, config.secret, {
-                        expiresIn: 86400 // expires in 24 hours
+                    //var expires = moment().add('minutes', 2).valueOf();
+                    var token = jwt.sign({ id: results[0].user_id , role : "Admin"}, config.secret, {
+                        expiresIn: "120000" // expires in 1 hour
                     });
+                    console.log(token);
+                    
+                    console.log(results);
                     res.status(200).send({ auth: true, token: token });
                 }
                 });

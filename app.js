@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
-let middleware = require('./middleware/middleware');
 
 const config = require('./util/config');
 const feedRoutes = require('./routes/user');

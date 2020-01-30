@@ -9,7 +9,10 @@ router.post('/signup', userController.signup);
 
 router.post('/login',userController.login);
 
-// Added middleware for verifying token
+/**
+ * This is used to get all the users 
+ * ( Added middleware for verifying token i.e verifyToken )
+ */
 router.get('/all', verifyToken, userController.getAllUsers);
 
 module.exports = router;
