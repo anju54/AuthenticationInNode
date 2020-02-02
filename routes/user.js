@@ -1,5 +1,6 @@
 const express = require('express');
 var verifyToken = require('../middleware/verifyToken');
+const adminRole=require('../middleware/auth');
 
 const userController = require('../controller/user');
 
@@ -13,6 +14,6 @@ router.post('/login',userController.login);
  * This is used to get all the users 
  * ( Added middleware for verifying token i.e verifyToken )
  */
-router.get('/all', verifyToken, userController.getAllUsers);
+router.get('/all', adminRole, userController.getAllUsers);
 
 module.exports = router;
